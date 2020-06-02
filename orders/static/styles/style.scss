@@ -31,6 +31,7 @@ h2{
 
 }
 
+
 p {
         @extend %baseHeading;
         font-size:  12px;
@@ -56,6 +57,8 @@ p {
 {
     border: 3px solid green;
 }
+
+
 
 body
 {
@@ -84,7 +87,7 @@ td
     padding: 10px;
 }
 
-form
+form, #loginMenu
 {   background-color: lighten($col2, 40%);
     border-radius: 1px;
     padding: 4px;
@@ -96,6 +99,9 @@ input[type=submit]
 {
     color: white;
     background-color: $col1;
+    border: none;
+    font-size: 18px;
+    padding: 20px 34px;
 }
 
 input[type=submit]:hover
@@ -104,6 +110,25 @@ input[type=submit]:hover
     background-color: $col2;
 }
 
+.buttonLink
+{
+    background-color: $col1;
+    border: none;
+    color: white;
+    padding: 20px 34px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+a:hover
+{
+    color: lighten($col2, 21%);
+    background-color: $col2;
+}
 
 
 // On screens that are 992px wide or less, go from four columns to two columns

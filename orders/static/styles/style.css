@@ -59,7 +59,7 @@ table {
 td {
   padding: 10px; }
 
-form {
+form, #loginMenu {
   background-color: #d17551;
   border-radius: 1px;
   padding: 4px;
@@ -67,9 +67,28 @@ form {
 
 input[type=submit] {
   color: white;
-  background-color: #277424; }
+  background-color: #277424;
+  border: none;
+  font-size: 18px;
+  padding: 20px 34px; }
 
 input[type=submit]:hover {
+  color: #994828;
+  background-color: #442012; }
+
+.buttonLink {
+  background-color: #277424;
+  border: none;
+  color: white;
+  padding: 20px 34px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;
+  cursor: pointer; }
+
+a:hover {
   color: #994828;
   background-color: #442012; }
 

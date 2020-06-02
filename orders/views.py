@@ -98,7 +98,7 @@ def view_menu(request):
     username=getAuthenticatedUser(request)    
     if username == None:
         #If not logged in then do nothing
-        return render(request, "index.html", {"user": "Logged out"})
+        return render(request, "menu.html", getMenuDataDict("Anonymous"))
 
     #If a super user then give the option to display orders
     if request.user.is_superuser:
@@ -117,8 +117,8 @@ def addItem(request, itemSize, id, mainItemID):
     #Get username for the orders database
     username=getAuthenticatedUser(request)    
     if username == None:
-        #If not logged in then do nothing
-        return render(request, "index.html", {"user": "Logged out"})
+        #If not logged in then use the anonymous user
+        username = "Anonymous"
 
     currentOrder = None
 
@@ -168,8 +168,8 @@ def removeItem(request, itemId, mainItemID=None):
     #Get username for the orders database
     username=getAuthenticatedUser(request)    
     if username == None:
-        #If not logged in then do nothing
-        return render(request, "index.html", {"user": "Logged out"})
+        #If not logged in then use the anonymous user
+        username = "Anonymous"
 
     #Check if an order exists in the database yet for the user
     if Order.objects.filter(user=username).exists():
@@ -205,8 +205,8 @@ def clearOrder(request):
     #Get username
     username=getAuthenticatedUser(request)    
     if username == None:
-        #If not logged in then do nothing
-        return render(request, "index.html", {"user": "Logged out"})
+        #If not logged in then use the anonymous user
+        username = "Anonymous"
 
     #Remove order if it exists
     if Order.objects.filter(user=username).exists():
