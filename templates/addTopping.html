@@ -1,0 +1,14 @@
+{% for mainItem in cartMainItems %}
+    {% if mainItem.canHaveToppings %}
+    <td>
+        
+        {% if mainItem.toppings.count < mainItem.toppingLimit %}
+            <form action = "{% url 'orders:addItem' 2 item.id mainItem.id %}">
+                ${{item.smallPrice}} <br>
+                <input type="submit" value="+ to {{mainItem.name}}"/> <br>
+                ({{ mainItem.toppings.count }}/{{mainItem.toppingLimit}})
+            </form>
+        {% endif %}
+    </td>
+    {% endif %}
+{% endfor %}

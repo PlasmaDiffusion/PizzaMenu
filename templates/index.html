@@ -1,0 +1,31 @@
+<html>
+        {% include 'layout.html' %}
+
+<body>
+
+
+        <form action="{% url 'orders:login' %}" method="POST">
+
+        {% csrf_token %}
+        <input name="username" type="text"/>
+        <input name="password" type="password"/>
+        <input value="Login" type="submit"/>
+
+        </form>
+    
+
+        <form action = "{% url 'orders:signUp' %}"> <input type="submit" value="Sign Up"/></form>
+
+        {% if form.errors %}
+        <p>Your username and password didn't match.</p>
+        {% endif %}
+
+        {% load static %}
+        <img src="{% static 'images/pizza.png' %}" />
+
+
+        {{msg}}
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+        {% include 'layout.html' %}
+<body>
+
+   
+        
+            <h1>Placed Orders</h1>
+
+            
+            {% for placedOrder in placedOrders %}
+            
+            <table>
+                <tr>
+                <td>{{placedOrder.order.user}}</td>
+                
+                <td>${{placedOrder.order.totalPrice}}</td>
+                </tr>
+
+                <!-- Show main items -->
+                {% for mainItem in placedOrder.order.mainItems.all %}
+
+                <tr>
+                    <td>{{mainItem.name}}</td>
+                    <td>{{mainItem.price}}</td>
+                    {% if mainItem.large %}
+                    <td> (Large) </td>
+                    {% else %}
+                    <td> (Small) </td>
+                    {% endif %}
+
+                    <!-- Show toppings -->
+                    {% for topping in mainItem.toppings.all %}
+                        <td> &emsp; + {{topping.name}}</td>
+                        <td>${{topping.price}}</td>
+
+                    {% endfor %}
+                {% endfor %}
+                </tr>
+                <!-- Buttons to mark off these orders here! -->
+                <tr>
+                <td>
+                    {% if placedOrder.progress == 1 %}
+                    <i>Delivering</i> <form action = "{% url 'orders:removeOrder' placedOrder.id %}"> <input type="submit" value="Mark As Delivered"/></form>
+                    {% elif placedOrder.progress == 2 %}
+                    <b>Delivered</b> <form action = "{% url 'orders:removeOrder' placedOrder.id %}"> <input type="submit" value="Remove From List"/></form>
+                    {% else %}
+                    Pending <form action = "{% url 'orders:removeOrder' placedOrder.id %}"> <input type="submit" value="Mark As Delivering"/></form>
+                    {% endif %}
+                </td>
+                </tr>
+                    
+            </table>
+            {% endfor %}
+
+            
+            <form action = "{% url 'orders:view_menu' %}"> <input type="submit" value="Back"/></form>
+
+
+
+</body>
+
+</html>

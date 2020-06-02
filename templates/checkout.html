@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+        {% include 'layout.html' %}
+        
+<body>
+
+
+    <!-- Show stuff in the user's cart here -->
+    {% if cart.user != None %}    
+
+
+
+        <table>
+            <th>Order</th>
+            <th>${{cart.totalPrice}}</th>
+
+            
+            {% for mainItem in cartMainItems %}
+            <tr>
+                <td>{{mainItem.name}}</td>
+                <td>${{mainItem.price}}</td>
+            
+                <!-- Show toppings -->
+                {% for topping in mainItem.toppings.all %}
+                <tr>
+                    <td> {{topping.name}}</td>
+                    <td> ${{topping.price}}</td>
+                </tr>
+                {% endfor %}
+
+            {% endfor %}
+
+        </table>
+    <!-- Confirmation -->
+    
+    <p>The above items will be delivered for ${{cart.totalPrice}}</p>
+    <form action = "{% url 'orders:submitOrder' cart.id %}"> <input type="submit" value="Confirm Order"/></form>
+
+
+    {% endif %}
+
+    <form action = "{% url 'orders:view_menu' %}"> <input type="submit" value="Back"/></form>
+
+
+</body>
+
+</html>

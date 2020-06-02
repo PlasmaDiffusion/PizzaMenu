@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+        {% include 'layout.html' %}
+
+<body>
+
+    
+    {% ifnotequal user "Logged out" %}
+
+    
+        <p>Logged in as: <i>{{cartUser}}</i></p>
+        
+        <form action = "{% url 'orders:view_logout' %}"> <input type="submit" value="Log Out"/>
+            {% csrf_token %}
+        </form>
+        
+    {% else %}
+
+        <form action="{% url 'orders:login' %}" method="POST">
+            
+        {% csrf_token %}
+        <input name="username" type="text"/>
+        <input name="password" type="password"/>
+        <input value="Login" type="submit"/>
+
+        </form>
+    
+
+        <form action = "{% url 'orders:signUp' %}"> <input type="submit" value="Sign Up"/></form>
+
+    {% endifnotequal %}
+
+    <!-- Show status of placed order if it exists -->
+    {% ifnotequal orderStatus None %}
+        {% if orderStatus == 0 %}
+        <p>Your order is pending.</p>
+        {% elif orderStatus == 1 %}
+        <p>Your order is being delivered.</p>
+        {% endif %}
+
+
+    {% endifnotequal %}
+
+    <!-- Admin order page -->
+    {% if msg == "IsSuperUser" %}
+        <a href="{% url 'orders:showPlacedOrders' %}"> View Placed Orders </a>
+    {% else  %} <!-- Show message to user here  otherwise -->
+    {{msg}}
+    {% endif %}
+    
+
+    <!-- Show stuff in the user's cart here -->
+    {% if cart.user != None %}    
+
+    <br><br>
+
+    <h2> Cart </h2>
+
+        <table>
+            <th>Order</th>
+            <th>${{cart.totalPrice}}</th>
+
+            
+            {% for mainItem in cartMainItems %}
+            <tr style="border-top: 1px solid black;">
+                <td >{{mainItem.name}}</td>
+                <td>${{mainItem.price}}</td>
+                <td>
+                    <form action = "{% url 'orders:removeItem' mainItem.id %}"> <input type="submit" value="X"/></form>
+                </td>
+            
+                <!-- Show toppings -->
+                
+                {% for topping in mainItem.toppings.all %}
+                
+                <tr >
+                    
+                    <td style="font-size:smaller"> +  {{topping.name}}</td>
+                    <td style="font-size:smaller">${{topping.price}}</td>
+                    <td>
+                        <form action = "{% url 'orders:removeItem' topping.id mainItem.id %}"> <input type="submit" value="X"/></form>
+                    </td>
+                    
+                </tr>
+                
+                {% endfor %}
+
+            {% endfor %}
+
+        </table>
+    <!-- Option to remove orders, place them, etc. -->
+        {% if cart.totalPrice > 0 %}
+        <br>
+        <form action = "{% url 'orders:clearOrder' %}"> <input type="submit" value="Remove All Items"/></form>
+        <form action = "{% url 'orders:showCheckout' %}"> <input type="submit" value="Checkout"/></form>
+        {% endif %}
+
+    {% endif %}
+
+    <br>
+    <h2> Menu </h2>
+
+    {% load static %}
+    <img src="{% static 'images/pizza.png' %}" />
+
+    <!-- Display menu dictionary -->
+
+
+        {% for menu in menus %}
+        
+        <table>    
+        <tr><th>
+                <i>{{menu.name}}</i>
+                </th>
+                
+                
+
+                {% if menu.smallAndLarge %}
+                <th>  </th>
+                {% endif %}
+            
+            <!-- Individual menu options here-->
+            {% for item in items %}
+                {% if item.fromMenu.name == menu.name %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    {% block menuButton %} {% endblock %}
+                    <!-- Main items -->
+                    {% if  item.fromMenu.name != "Toppings" and item.fromMenu.name != "Sub Extras" %} 
+                        <!-- Price info here-->
+                        {% if item.smallOnly %}
+                        <td>{% include 'addSmallItem.html' %}</td>
+                        {% elif item.largeOnly %}
+                         <td>{% include 'addLargeItem.html' %}</td>
+                        {% else %}
+                         <td>{% include 'addSmallItem.html' %} </td><td>{% include 'addLargeItem.html' %}</td> </td>
+                        {% endif %}
+                    {% else %}
+                    <!-- Extra toppings -->
+                    <td>{% include 'addTopping.html' %}</td>
+                    {% endif %}
+                </tr>
+                {% endif %}
+            {% endfor %}
+            <br>
+        </tr>
+        <table></table>
+        {% endfor %}
+
+    </table> 
+
+</body>
+
+</html>
