@@ -45,6 +45,8 @@
     <!-- Admin order page -->
     {% if msg == "IsSuperUser" %}
         <a href="{% url 'orders:showPlacedOrders' %}"> View Placed Orders </a>
+        <br>
+        <a href="/../../admin"> Manage Menu Database </a>
     {% else  %} <!-- Show message to user here  otherwise -->
     {{msg}}
     {% endif %}
