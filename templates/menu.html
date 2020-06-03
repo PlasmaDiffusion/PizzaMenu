@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
+    
 
         {% include 'layout.html' %}
+        {% load static %}
+        <script  src="{% static 'java/menu.js' %}"></script>
 
 <body>
 
@@ -11,7 +14,7 @@
     
         <p>Logged in as: <i>{{cartUser}}</i></p>
         
-        <form action = "{% url 'orders:view_logout' %}"> <input type="submit" value="Log Out"/>
+        <form action = "{% url 'orders:view_logout' %}"> <input type="submit" value="Log Out" id="logout"/>
             {% csrf_token %}
         </form>
         
@@ -56,8 +59,9 @@
     {% if cart.user != None %}    
 
     <br><br>
-
+<div class ="left">
     <h2> Cart </h2>
+    <div class ="scroll">
 
         <table>
             <th>Order</th>
@@ -101,8 +105,12 @@
     {% endif %}
 
     <br>
-    <h2> Menu </h2>
+    </div>
+</div>
 
+<div class="right">
+    <h2> Menu </h2>
+    <div class = "scroll">
     {% load static %}
     <img src="{% static 'images/pizza.png' %}" />
 
@@ -111,10 +119,11 @@
 
         {% for menu in menus %}
         
-        <table>    
-        <tr><th>
-                <i>{{menu.name}}</i>
-                </th>
+        <table id="{{menu.name}}">    
+        <tbody>
+            <th>
+                <button class ="dropdown"> > </button> <i>{{menu.name}}</i>
+            </th>
                 
                 
 
@@ -146,11 +155,12 @@
                 {% endif %}
             {% endfor %}
             <br>
-        </tr>
-        <table></table>
+        </tbody>
+        </table>
         {% endfor %}
 
-    </table> 
+        </div>
+    </div>
 
 </body>
 

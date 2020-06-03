@@ -11,7 +11,7 @@
             
             {% for placedOrder in placedOrders %}
             
-            <table>
+            <table class="placedOrdersTable">
                 <tr>
                 <td>{{placedOrder.order.user}}</td>
                 
@@ -32,12 +32,12 @@
 
                     <!-- Show toppings -->
                     {% for topping in mainItem.toppings.all %}
-                        <td> &emsp; + {{topping.name}}</td>
-                        <td>${{topping.price}}</td>
+                        <td> &emsp; {{topping.name}}</td>
+                        <!--<td>${{topping.price}}</td>-->
 
                     {% endfor %}
                 {% endfor %}
-                </tr>
+                </tr >
                 <!-- Buttons to mark off these orders here! -->
                 <tr>
                 <td>

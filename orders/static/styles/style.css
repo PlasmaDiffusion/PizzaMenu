@@ -39,6 +39,18 @@ p {
 .divider {
   border: 3px solid green; }
 
+.left {
+  position: fixed;
+  left: 10%; }
+
+.right {
+  position: fixed;
+  left: 50%; }
+
+.scroll {
+  height: 500px;
+  overflow: auto; }
+
 body {
   background: url("/static/images/greenBG.png");
   background-color: #0c220b;
@@ -59,6 +71,13 @@ table {
 td {
   padding: 10px; }
 
+th {
+  align-content: left; }
+
+.placedOrdersTable td, .placedOrdersTable tr {
+  border: 1px solid black;
+  padding: 16px; }
+
 form, #loginMenu {
   background-color: #d17551;
   border-radius: 1px;
@@ -76,7 +95,7 @@ input[type=submit]:hover {
   color: #994828;
   background-color: #442012; }
 
-.buttonLink {
+.buttonLink, .dropdown {
   background-color: #277424;
   border: none;
   color: white;
@@ -88,12 +107,50 @@ input[type=submit]:hover {
   margin: 4px 2px;
   cursor: pointer; }
 
+#logout {
+  padding: 4px 4px; }
+
+.dropdown {
+  padding: 4px 4px;
+  border-radius: 4px; }
+
 a:hover {
   color: #994828;
   background-color: #442012; }
 
 @media screen and (max-width: 992px) {
   h2 {
-    width: 50%; } }
+    width: 80%; }
+
+  .left {
+    position: relative;
+    overflow: visible;
+    left: 0%; }
+
+  .right {
+    position: relative;
+    overflow: visible;
+    left: 0%; }
+
+  .scroll {
+    overflow: visible;
+    height: auto; } }
+/* width */
+::-webkit-scrollbar {
+  width: 20px; }
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px; }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: grey; }
 
 /*# sourceMappingURL=style.css.map */
