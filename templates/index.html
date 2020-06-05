@@ -9,12 +9,14 @@
         {% csrf_token %}
         <input name="username" type="text" placeholder="Username"/>
         <input name="password" type="password" placeholder="Password"/>
+        <br>
+        <br>
         <input value="Login" type="submit"/>
         </form>
     
         <div id="loginMenu">
                 <a href="{% url 'orders:signUp' %}" class="buttonLink">Sign up</a>
-                <a href="{% url 'orders:view_menu' %}" class="buttonLink">Sample Menu</a>        
+                <a href="{% url 'orders:view_menu' %}" class="buttonLink">Sample Menu</a>  
         </div>
 
 
@@ -26,7 +28,7 @@
         {% load static %}
         <img src="{% static 'images/pizza.png' %}" />
         
-
+        
         {{msg}}
 
 </body>

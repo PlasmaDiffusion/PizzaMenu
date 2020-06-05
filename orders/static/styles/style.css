@@ -1,4 +1,4 @@
-h1, h2, p {
+h1, h2, h3, p {
   font-family: sans-serif;
   font-size: 36px;
   font-weight: bold;
@@ -6,20 +6,20 @@ h1, h2, p {
   color: white;
   background-color: #277424;
   outline: 2px as #800505;
-  border: 2px inset black;
-  border-radius: 8px;
+  border: 2px solid #0d260c;
   padding: 4px;
   width: 400px; }
 
 h1 {
   font-size: 12px;
-  border: none;
   text-shadow: 2px 2px black; }
 
-h2 {
+h2, h3 {
   font-size: 36px;
-  border: none;
-  text-shadow: 2px 2px black; }
+  text-shadow: 2px 2px black;
+  padding: 0px;
+  margin: 0px;
+  width: 100%; }
 
 p {
   font-size: 12px;
@@ -27,7 +27,8 @@ p {
   outline: none;
   border-radius: 0px;
   width: 400px;
-  text-align: center; }
+  text-align: center;
+  border: 3px solid green; }
 
 .helpText {
   padding-left: 90px; }
@@ -49,7 +50,8 @@ p {
 
 .scroll {
   height: 500px;
-  overflow: auto; }
+  overflow: auto;
+  width: 500px; }
 
 body {
   background: url("/static/images/greenBG.png");
@@ -68,6 +70,9 @@ table {
   margin: 8px;
   align-content: center; }
 
+#cart {
+  width: 75%; }
+
 td {
   padding: 10px; }
 
@@ -78,11 +83,21 @@ th {
   border: 1px solid black;
   padding: 16px; }
 
-form, #loginMenu {
+form, #loginMenu, #toppingForm {
   background-color: #d17551;
   border-radius: 1px;
   padding: 4px;
   max-width: 400px; }
+  form p, #loginMenu p, #toppingForm p {
+    max-width: 390px; }
+
+#toppingForm {
+  padding: 1px;
+  max-width: 100px; }
+  #toppingForm input[type=submit] {
+    padding: 10px 20px;
+    white-space: normal;
+    font-size: 12px; }
 
 input[type=submit] {
   color: white;
@@ -112,7 +127,7 @@ input[type=submit]:hover {
 
 .dropdown {
   padding: 4px 4px;
-  border-radius: 4px; }
+  border-radius: 50%; }
 
 a:hover {
   color: #994828;
@@ -152,5 +167,8 @@ a:hover {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: grey; }
+
+::-webkit-scrollbar-corner {
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */

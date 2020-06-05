@@ -37,8 +37,10 @@
     <!-- Show status of placed order if it exists -->
     {% ifnotequal orderStatus None %}
         {% if orderStatus == 0 %}
+        <br>
         <p>Your order is pending.</p>
         {% elif orderStatus == 1 %}
+        <br>
         <p>Your order is being delivered.</p>
         {% endif %}
 
@@ -63,7 +65,7 @@
     <h2> Cart </h2>
     <div class ="scroll">
 
-        <table>
+        <table id="cart">
             <th>Order</th>
             <th>${{cart.totalPrice}}</th>
 
@@ -109,7 +111,7 @@
 </div>
 
 <div class="right">
-    <h2> Menu </h2>
+    <h3> Menu </h3>
     <div class = "scroll">
     {% load static %}
     <img src="{% static 'images/pizza.png' %}" />
