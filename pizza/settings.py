@@ -124,7 +124,7 @@ USE_TZ = True
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 # Static files (CSS, JavaScript, Images) #comment STATICFILES_DIRS for debug also collectstatic is a command to call for release
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = 'orders/static/'
+STATIC_URL = '/orders/static/'
 
 # Extra places for collectstatic to find static files.
 #STATICFILES_DIRS = (
