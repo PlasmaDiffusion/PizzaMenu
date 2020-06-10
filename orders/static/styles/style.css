@@ -54,7 +54,7 @@ p {
   width: 500px; }
 
 body {
-  background: url("/static/images/greenBG.png");
+  background: url("/orders/static/images/greenBG.png");
   background-color: #0c220b;
   color: white;
   margin: auto;
