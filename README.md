@@ -1,9 +1,3 @@
-# Project 3 Web Programming with Python and JavaScript
-
-Personal Touch: An admin only menu that lets the user mark an order as being delivered or delivered (on the Placed Orders page).
-Regular users can see if their order is pending, or being delivered (on the Menu page).
-
---------------------------------------------------
 Python Files:
 
 views.py - Main code file with all functionality aside from editing the database
