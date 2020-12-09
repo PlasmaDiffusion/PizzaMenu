@@ -27,4 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
         tableBodyChildren[i].style.display = "none";
     }
   });
+
+  //Show the menu on the left, if there's nothing in the cart. Otherwise it will be on the right. (Desktop view only)
+  if (!document.getElementById("cart"))
+    document.getElementById("menu").style.float = "left";
 });

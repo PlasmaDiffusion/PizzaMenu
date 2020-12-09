@@ -3,9 +3,9 @@
     <td>
         
         {% if mainItem.toppings.count < mainItem.toppingLimit %}
-            <form id="toppingForm" action = "{% url 'orders:addItem' 2 item.id mainItem.id %}">
+            <form id="toppingForm" action = "{% url 'orders:addItem' 2 item.id mainItem.id %}" style="text-align: center;">
                 ${{item.smallPrice}} <br>
-                <input type="submit" value="+ to {{mainItem.name}}"/> <br>
+                <input type="submit" value=" to {{mainItem.name}}" data-icon="plus"/> <br>
                 ({{ mainItem.toppings.count }}/{{mainItem.toppingLimit}})
             </form>
         {% endif %}

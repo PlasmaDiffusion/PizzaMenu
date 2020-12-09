@@ -64,7 +64,7 @@
     {% if cart.user != None %}    
 
     <br><br>
-<div class ="left">
+<div class ="left" id="cart">
     <div data-form="ui-body-a" class="ui-body ui-body-a ui-corner-all">
         
     <h2> Cart </h2>
@@ -105,8 +105,8 @@
     <!-- Option to remove orders, place them, etc. -->
         {% if cart.totalPrice > 0 %}
         <br>
-        <form action = "{% url 'orders:clearOrder' %}"> <input type="submit" value="Remove All Items"/></form>
-        <form action = "{% url 'orders:showCheckout' %}"> <input type="submit" value="Checkout"/></form>
+        <form action = "{% url 'orders:clearOrder' %}"> <input type="submit" value="Remove All Items" data-icon="delete"/></form>
+        <form action = "{% url 'orders:showCheckout' %}"> <input type="submit" value="Checkout" data-icon="arrow-r"/></form>
         {% endif %}
 
     {% endif %}
@@ -115,7 +115,7 @@
     </div>
 </div>
 
-<div class="right">
+<div class="right" id="menu">
     <h3> Menu </h3>
     <div class = "scroll">
     {% load static %}
@@ -146,7 +146,7 @@
             <!-- Individual menu options here-->
             {% for item in items %}
                 {% if item.fromMenu.name == menu.name %}
-                <tr>
+                <tr style="  border-bottom: 1px solid black;">
                     <td>{{item.name}}</td>
                     {% block menuButton %} {% endblock %}
                     <!-- Main items -->
@@ -164,13 +164,19 @@
                     <td>{% include 'addTopping.html' %}</td>
                     {% endif %}
                 </tr>
+                <tr>
+                    <td style="visibility:hidden"></td>
+                </tr>
+                <tr>
+                    <td style="visibility:hidden"></td>
+                </tr>
                 {% endif %}
             {% endfor %}
-        </p>
 
-            <br>
         </tbody>
         </table>
+            </p>
+
     </div>
     <br>  
 

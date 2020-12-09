@@ -770,7 +770,31 @@ button[disabled],
 }
 
 /* Custom stuff below */
-td {
+td,
+tr {
   width: 20%;
   /*color: red;*/
+}
+
+.left,
+.right {
+  padding: 10px;
+}
+
+form {
+  background-color: rgb(41, 78, 36);
+  border-radius: 4px;
+}
+
+/*Desktop viewport columns */
+@media screen and (min-width: 992px) {
+  .left {
+    width: 40%;
+    position: fixed;
+    bottom: 0;
+  }
+  .right {
+    float: right;
+    width: 55%;
+  }
 }
