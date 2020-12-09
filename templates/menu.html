@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
-    
+    <head>
+      
 
         {% include 'layout.html' %}
         {% load static %}
         <script  src="{% static 'java/menu.js' %}"></script>
+    </head>
+
 
 <body>
 
@@ -124,7 +127,7 @@
         <table id="{{menu.name}}">    
         <tbody>
             <th>
-                <button class ="dropdown"> > </button> <i>{{menu.name}}</i>
+                <i>{{menu.name}}</i> <button class ="dropdown"> > </button>
             </th>
                 
                 
