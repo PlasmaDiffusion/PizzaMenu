@@ -104,7 +104,7 @@ def clearOrder(request):
     om = OrderManager()
     om.clearOrder(username)
 
-    return render(request, "menu.html", getMenuDataDict(username))
+    return redirect('/accounts/profile')
 
 def showCheckout(request):
     #Get username

@@ -123,9 +123,13 @@
 
 
         {% for menu in menus %}
+
+        <div data-form="ui-body-a" class="ui-body ui-body-a ui-corner-all">
+            <p>
         
-        <table id="{{menu.name}}">    
+        <table id="{{menu.name}}">
         <tbody>
+
             <th>
                 <i>{{menu.name}}</i> <button class ="dropdown"> > </button>
             </th>
@@ -136,6 +140,8 @@
                 <th>  </th>
                 {% endif %}
             
+
+  
             <!-- Individual menu options here-->
             {% for item in items %}
                 {% if item.fromMenu.name == menu.name %}
@@ -159,9 +165,13 @@
                 </tr>
                 {% endif %}
             {% endfor %}
+        </p>
+
             <br>
         </tbody>
         </table>
+    </div>  
+
         {% endfor %}
 
         </div>
