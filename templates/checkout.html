@@ -10,7 +10,8 @@
     {% if cart.user != None %}    
 
 
-
+    <div data-form="ui-body-a" class="ui-body ui-body-a ui-corner-all">
+        <p>
         <table>
             <th>Order</th>
             <th>${{cart.totalPrice}}</th>
@@ -32,16 +33,20 @@
             {% endfor %}
 
         </table>
-    <!-- Confirmation -->
-    
-    <p>The above items will be delivered for ${{cart.totalPrice}}</p>
-    <form action = "{% url 'orders:submitOrder' cart.id %}"> <input type="submit" value="Confirm Order"/></form>
+    </p>
+</div>
 
+
+    <!-- Confirmation -->
+    <div data-form="ui-body-a" class="ui-body ui-body-a ui-corner-all">
+    <p>The above items will be delivered for ${{cart.totalPrice}}!</p>
+    <form action = "{% url 'orders:submitOrder' cart.id %}"> <input type="submit" value="Confirm Order"/></form>
+    </div>
 
     {% endif %}
 
     <form action = "{% url 'orders:view_menu' %}"> <input type="submit" value="Back"/></form>
-
+    
 
 </body>
 

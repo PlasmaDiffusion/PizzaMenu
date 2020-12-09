@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
           else tableBodyChildren[i].style.display = "table-row";
         }
 
-        //Change button text
+        /*Change button text
         console.log(button.innerHTML);
         if (button.innerHTML == " &gt; ") button.innerHTML = " v ";
-        else button.innerHTML = " &gt; ";
+        else button.innerHTML = " &gt; ";*/
       };
 
       //Collapse all menus by default

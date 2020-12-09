@@ -28,7 +28,7 @@
         {% csrf_token %}
         <input name="username" type="text"/>
         <input name="password" type="password"/>
-        <input value="Login" type="submit"/>
+        <input value="Login" type="submit" style="width: 10%;"/>
 
         </form>
     
@@ -65,6 +65,8 @@
 
     <br><br>
 <div class ="left">
+    <div data-form="ui-body-a" class="ui-body ui-body-a ui-corner-all">
+        
     <h2> Cart </h2>
     <div class ="scroll">
 
@@ -98,7 +100,7 @@
                 {% endfor %}
 
             {% endfor %}
-
+            
         </table>
     <!-- Option to remove orders, place them, etc. -->
         {% if cart.totalPrice > 0 %}
@@ -108,7 +110,7 @@
         {% endif %}
 
     {% endif %}
-
+    </div>
     <br>
     </div>
 </div>
@@ -126,12 +128,11 @@
 
         <div data-form="ui-body-a" class="ui-body ui-body-a ui-corner-all">
             <p>
-        
         <table id="{{menu.name}}">
         <tbody>
 
             <th>
-                <i>{{menu.name}}</i> <button class ="dropdown"> > </button>
+               <button class ="dropdown"> {{menu.name}} </button>
             </th>
                 
                 
@@ -170,7 +171,8 @@
             <br>
         </tbody>
         </table>
-    </div>  
+    </div>
+    <br>  
 
         {% endfor %}
 

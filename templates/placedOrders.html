@@ -11,6 +11,9 @@
             
             {% for placedOrder in placedOrders %}
             
+            <div data-form="ui-body-a" class="ui-body ui-body-a ui-corner-all">
+                <p>
+    
             <table class="placedOrdersTable">
                 <tr>
                 <td>{{placedOrder.order.user}}</td>
@@ -52,6 +55,9 @@
                 </tr>
                     
             </table>
+            </p>
+            </div>
+            <br>
             {% endfor %}
 
             
