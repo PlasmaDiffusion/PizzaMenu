@@ -60,7 +60,7 @@
     {% endif %}
     
 
-    <!-- Show stuff in the user's cart here -->
+    <!-- Show stuff in the user's cart here ------------------------------------------------------------------------------------ -->
     {% if cart.user != None %}    
 
     <br><br>
@@ -87,7 +87,7 @@
                 
                 {% for topping in mainItem.toppings.all %}
                 
-                <tr >
+                <tr>
                     
                     <td style="font-size:smaller"> +  {{topping.name}}</td>
                     <td style="font-size:smaller">${{topping.price}}</td>
@@ -121,7 +121,7 @@
     {% load static %}
     <img src="{% static 'images/pizza.png' %}" />
 
-    <!-- Display menu dictionary -->
+    <!-- Display menu dictionary --------------------------------------------------------------------------------------------- -->
 
 
         {% for menu in menus %}
@@ -139,7 +139,26 @@
 
                 {% if menu.smallAndLarge %}
                 <th>  </th>
+                {% elif menu.name == "Toppings" or menu.name == "Sub Extras" %}
+                <tr>
+                    <td>
+                        <form>
+                            <div class="ui-field-contain">
+                                <label for="select-native-1">For:</label> <br>
+                                <select name="select-native-1" id="select-native-{{menu.name}}">
+                                {% for mainItem in cartMainItems %}
+                                    {% if mainItem.canHaveToppings and mainItem.toppings.count < mainItem.toppingLimit %} <!--and mainItem.toppings.count < mainItem.toppingLimit-->
+                                            <option value={{mainItem.id}}>{{mainItem.name}} [{{ mainItem.toppings.count }}/{{mainItem.toppingLimit}}]</option>
+                                    {% endif %}
+                                {% endfor %}
+
+                                </select>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
                 {% endif %}
+                
             
 
   
