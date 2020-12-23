@@ -17,13 +17,13 @@
     
         <p>Logged in as: <i>{{cartUser}}</i></p>
         
-        <form action = "{% url 'orders:view_logout' %}"> <input type="submit" value="Log Out" id="logout"/>
+        <form action = "{% url 'orders:view_logout' %}" class="loginData"> <input type="submit" value="Log Out" id="logout"/>
             {% csrf_token %}
         </form>
         
     {% else %}
 
-        <form action="{% url 'orders:login' %}" method="POST">
+        <form action="{% url 'orders:login' %}" class="loginData" method="POST">
             
         {% csrf_token %}
         <input name="username" type="text"/>
@@ -33,7 +33,7 @@
         </form>
     
 
-        <form action = "{% url 'orders:signUp' %}"> <input type="submit" value="Sign Up"/></form>
+        <form action = "{% url 'orders:signUp' %}" class="loginData"> <input type="submit" value="Sign Up"/></form>
 
     {% endifnotequal %}
 
@@ -65,10 +65,10 @@
 
     <br><br>
 <div class ="left" id="cart">
-    <div data-form="ui-body-a" class="ui-body ui-body-a ui-corner-all">
         
     <h2> Cart </h2>
     <div class ="scroll">
+        <div data-form="ui-body-b" class="ui-body ui-body-b ui-corner-all">
 
         <table id="cart">
             <th>Order</th>
@@ -102,17 +102,21 @@
             {% endfor %}
             
         </table>
+        <form action = "{% url 'orders:clearOrder' %}"> <input type="submit" value="Remove All Items" data-icon="delete"/></form>
+
+    </div>
+
     <!-- Option to remove orders, place them, etc. -->
         {% if cart.totalPrice > 0 %}
         <br>
-        <form action = "{% url 'orders:clearOrder' %}"> <input type="submit" value="Remove All Items" data-icon="delete"/></form>
+        <div data-form="ui-body-a" data-theme="a" class="ui-body ui-body-a ui-corner-all">
         <form action = "{% url 'orders:showCheckout' %}"> <input type="submit" value="Checkout" data-icon="arrow-r"/></form>
+        </div>
         {% endif %}
 
     {% endif %}
     </div>
     <br>
-    </div>
 </div>
 
 <div class="right" id="menu">
@@ -127,37 +131,36 @@
         {% for menu in menus %}
 
         <div data-form="ui-body-a" class="ui-body ui-body-a ui-corner-all">
-            <p>
-        <table id="{{menu.name}}">
-        <tbody>
+
+                <button class ="dropdown">{{menu.name}}</button>
+
+                {%if menu.name == "Toppings" or menu.name == "Sub Extras" %}
+                <form style="background-color: transparent;">
+                    <div data-form="ui-body-c" class="ui-body ui-body-c ui-corner-all" data-theme="c">
+                        <label for="select-native-1">Add to:</label><select name="select-native-1" id="select-native-{{menu.name}}">
+                        {% for mainItem in cartMainItems %}
+                            {% if mainItem.canHaveToppings and mainItem.toppings.count < mainItem.toppingLimit %} <!--and mainItem.toppings.count < mainItem.toppingLimit-->
+                                    <option value={{mainItem.id}}>{{mainItem.name}} ({{ mainItem.toppings.count }}/{{mainItem.toppingLimit}})</option>
+                            {% endif %}
+                        {% endfor %}
+
+                        </select>
+                    </div>
+                </form>
+        {% endif %}
+
+        <table >
+        <tbody id="{{menu.name}}">
 
             <th>
-               <button class ="dropdown"> {{menu.name}} </button>
             </th>
                 
                 
 
-                {% if menu.smallAndLarge %}
+                {% if menu.smallAndLarge %} <!--Add a second column -->
                 <th>  </th>
-                {% elif menu.name == "Toppings" or menu.name == "Sub Extras" %}
-                <tr>
-                    <td>
-                        <form>
-                            <div class="ui-field-contain">
-                                <label for="select-native-1">For:</label> <br>
-                                <select name="select-native-1" id="select-native-{{menu.name}}">
-                                {% for mainItem in cartMainItems %}
-                                    {% if mainItem.canHaveToppings and mainItem.toppings.count < mainItem.toppingLimit %} <!--and mainItem.toppings.count < mainItem.toppingLimit-->
-                                            <option value={{mainItem.id}}>{{mainItem.name}} [{{ mainItem.toppings.count }}/{{mainItem.toppingLimit}}]</option>
-                                    {% endif %}
-                                {% endfor %}
-
-                                </select>
-                            </div>
-                        </form>
-                    </td>
-                </tr>
                 {% endif %}
+
                 
             
 
@@ -194,8 +197,6 @@
 
         </tbody>
         </table>
-            </p>
-
     </div>
     <br>  
 
