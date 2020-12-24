@@ -19,6 +19,7 @@
                 <a href="{% url 'orders:view_menu' %}" class="ui-btn ui-corner-all">Sample Menu</a>  
         </div>
 
+        <div class="center">
 
         {% if form.errors %}
         <p>Your username and password didn't match.</p>
@@ -26,11 +27,13 @@
 
 
         {% load static %}
-        <img src="{% static 'images/pizza.png' %}" />
+        <img src="{% static 'images/pizza.png' %}" class="menu-image"/>
         
         
         {{msg}}
 
+
+        </div>
 </body>
 
 </html>
