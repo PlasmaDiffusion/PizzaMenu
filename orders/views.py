@@ -51,6 +51,7 @@ def signUp(request):
         return redirect('../login/')
     else: #Invalid form
         return render(request, "signUp.html", {"form": result["form"]})
+        
 
 def view_logout(request):
     logout(request)
@@ -83,7 +84,7 @@ def addItem(request, itemSize, id, mainItemID):
     mm = MenuManager()
     mm.addItem(username, itemSize, id, mainItemID)
     
-    return redirect('/accounts/profile')
+    return redirect('/menu')
 
 #Remove an item already in the cart. mainItemName is set for toppings
 def removeItem(request, itemId, mainItemID=None):
@@ -94,7 +95,7 @@ def removeItem(request, itemId, mainItemID=None):
     mm = MenuManager()
     mm.removeItem(username, itemId, mainItemID)
 
-    return redirect('/accounts/profile')
+    return redirect('/menu')
 
 def clearOrder(request):
     
@@ -104,7 +105,7 @@ def clearOrder(request):
     om = OrderManager()
     om.clearOrder(username)
 
-    return redirect('/accounts/profile')
+    return redirect('/menu')
 
 def showCheckout(request):
     #Get username

@@ -4,7 +4,7 @@
 <body>
 
 
-        <form action="{% url 'orders:login' %}" method="POST">
+        <form action="{% url 'orders:login' %}" class="center" method="POST">
 
         {% csrf_token %}
         <input name="username" type="text" placeholder="Username"/>
@@ -14,9 +14,9 @@
         <input value="Login" type="submit"/>
         </form>
     
-        <div id="loginMenu">
-                <a href="{% url 'orders:signUp' %}" class="buttonLink">Sign up</a>
-                <a href="{% url 'orders:view_menu' %}" class="buttonLink">Sample Menu</a>  
+        <div id="loginMenu" class="center">
+                <a href="{% url 'orders:signUp' %}" class="ui-btn ui-corner-all">Sign up</a>
+                <a href="{% url 'orders:view_menu' %}" class="ui-btn ui-corner-all">Sample Menu</a>  
         </div>
 
 

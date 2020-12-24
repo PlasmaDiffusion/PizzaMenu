@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['pizza-menu-mockup.herokuapp.com', '127.0.0.1']
 
+LOGIN_REDIRECT_URL = "../menu/"
 
 # Application definition
 

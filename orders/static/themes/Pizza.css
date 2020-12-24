@@ -803,6 +803,18 @@ form {
     width: 20%;
     float: left;
   }
+
+  .center {
+    margin: auto;
+    width: 50%;
+  }
+
+  .menu-title {
+    text-align: center;
+  }
+  .menu-image {
+    padding-left: 35%;
+  }
 }
 
 @media screen and (max-width: 480px) {

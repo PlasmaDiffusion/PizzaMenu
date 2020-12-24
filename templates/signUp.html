@@ -6,16 +6,16 @@
 
 
 
-    <form action="{% url 'orders:signUp' %}" method="POST">
+    <form action="{% url 'orders:signUp' %}" class="center" method="POST">
 
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form }}
         
-        <input value="SignUp" type="submit"/>
+        <input value="Sign Up" type="submit"/>
 
     </form>
 
-    <form action = "{% url 'orders:index' %}"> <input type="submit" value="Back To Login"/></form>
+    <form action = "{% url 'orders:index' %}" class="center"> <input type="submit" value="Back To Login"/></form>
     
 </body>
 
