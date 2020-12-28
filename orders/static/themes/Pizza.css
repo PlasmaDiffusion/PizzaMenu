@@ -786,16 +786,32 @@ form {
   border-radius: 4px;
 }
 
+.dropdown {
+  float: right;
+}
+
+.menuIcon {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
 /*Desktop viewport columns */
 @media screen and (min-width: 992px) {
-  .left {
+  #left {
     width: 40%;
     position: fixed;
     bottom: 0;
+    margin: auto;
   }
   .right {
     float: right;
     width: 55%;
+    margin: auto;
+  }
+
+  .scroll {
+    overflow: auto;
   }
 
   /*This stuff shouldn't fill the whole screen on large screens*/

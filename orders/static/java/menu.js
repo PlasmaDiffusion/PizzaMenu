@@ -46,14 +46,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupSelectors();
 
-  //Show the menu on the left, if there's nothing in the cart. Otherwise it will be on the right. (Desktop view only)
-  if (!document.getElementById("cart"))
-    document.getElementById("menu").style.float = "left";
+  MoveCartAndMenu();
 });
 
 //--------------------------------------------------------------------------------------------------------------------------------
 //Global functions
 //--------------------------------------------------------------------------------------------------------------------------------
+
+//Show the menu on the left, if there's nothing in the cart. Otherwise it will be on the right. (Desktop view only)
+function MoveCartAndMenu() {
+  var cartTable = document.getElementById("cartTable");
+  if (!cartTable) {
+    document.getElementById("menu").style.float = "left";
+  } else if (cartTable.children.length > 7) {
+    //Center the cart rather than have it be static if there's way too many items
+    let cart = document.getElementById("left");
+    cart.style.position = "relative";
+    cart.style.bottom = "auto";
+    document.getElementById("menu").style.float = "none";
+  }
+}
 
 //Have a selector for each pizza you have in your cart. (Changes input form buttons)
 function setupSelectors() {
@@ -79,7 +91,7 @@ function toggleDisplay(element) {
 //Change the form buttons based on the selector for the chosen pizza/sub
 function changeToppingButton(selector) {
   document.querySelectorAll("form").forEach((form) => {
-    if (form.className == "toppingForm") {
+    if (form.className == "toppingForm" && selector.value) {
       //Show the button/form
       form.style.display = "block";
 

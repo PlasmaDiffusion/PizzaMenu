@@ -41,9 +41,9 @@
     {% ifnotequal orderStatus None %}
         {% if orderStatus == 0 %}
         <br>
-        <p>Your order is pending.</p>
+        <p style="margin:10px">Your order is pending.</p>
         {% elif orderStatus == 1 %}
-        <br>
+        <br><br>
         <p>Your order is being delivered.</p>
         {% endif %}
 
@@ -64,13 +64,14 @@
     {% if cart.user != None %}    
 
     <br><br>
-<div class ="left" id="cart">
+<div id ="left">
         
     <h2> Cart </h2>
     <div class ="scroll">
         <div data-form="ui-body-b" class="ui-body ui-body-b ui-corner-all">
 
-        <table id="cart">
+        <table >
+         <tbody id="cartTable">
             <th>Order</th>
             <th>${{cart.totalPrice}}</th>
 
@@ -100,7 +101,7 @@
                 {% endfor %}
 
             {% endfor %}
-            
+         </tbody>
         </table>
         <form action = "{% url 'orders:clearOrder' %}"> <input type="submit" value="Remove All Items" data-icon="delete"/></form>
 
@@ -134,7 +135,8 @@
 
         <div data-form="ui-body-a" class="ui-body ui-body-a ui-corner-all">
 
-                <button class ="dropdown">{{menu.name}}</button>
+            <button class ="dropdown">{{menu.name}}</button><img src="{% static 'images'  %}/{{menu.name}}.png" class="menuIcon">
+
 
                 {%if menu.name == "Toppings" or menu.name == "Sub Extras" %}
                 <form style="background-color: transparent;">
