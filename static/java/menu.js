@@ -57,7 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
 function MoveCartAndMenu() {
   var cartTable = document.getElementById("cartTable");
   if (!cartTable) {
-    document.getElementById("menu").style.float = "left";
+    //Move the menu to the center, since there's no cart to display.
+    let menu = document.getElementById("menu");
+    menu.style.float = "left";
   } else if (cartTable.children.length > 7) {
     //Center the cart rather than have it be static if there's way too many items
     let cart = document.getElementById("left");
