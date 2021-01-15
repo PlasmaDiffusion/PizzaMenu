@@ -31,6 +31,7 @@ legend,
   color: inherit;
   text-shadow: inherit;
 }
+
 /* Form labels (overrides font-weight bold in bars, and mini font-size) */
 .ui-mobile label,
 div.ui-controlgroup-label {
@@ -796,6 +797,11 @@ form {
   top: 20px;
 }
 
+.menu-title {
+  text-align: center;
+  min-width: 20rem; /*Prevents menus from being small when floating left because there's no cart*/
+}
+
 /*Desktop viewport columns */
 @media screen and (min-width: 992px) {
   #left {
@@ -807,7 +813,7 @@ form {
   .right {
     float: right;
     width: 55%;
-    margin: auto;
+    margin-left: 22%;
   }
 
   .scroll {
@@ -817,7 +823,7 @@ form {
   /*This stuff shouldn't fill the whole screen on large screens*/
   .loginData {
     width: 20%;
-    float: left;
+    /*float: left;*/
   }
 
   .center {
@@ -825,9 +831,6 @@ form {
     width: 50%;
   }
 
-  .menu-title {
-    text-align: center;
-  }
   .menu-image {
     padding-left: 35%;
   }

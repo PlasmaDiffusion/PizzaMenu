@@ -11,7 +11,7 @@
 
 <body>
 
-    
+    <div class="ui-body ui-body-a">
     {% ifnotequal user "Logged out" %}
 
         <p>Logged in as: <i>{{cartUser}}</i></p>
@@ -23,19 +23,10 @@
         
     {% else %}
 
-        <form action="{% url 'orders:login' %}" class="loginData" method="POST">
-            
-        {% csrf_token %}
-        <input name="username" type="text"/>
-        <input name="password" type="password"/>
-        <input value="Login" type="submit" style="width: 10%;"/>
-
-        </form>
-    
-
-        <form action = "{% url 'orders:signUp' %}" class="loginData"> <input type="submit" value="Sign Up"/></form>
+        <form action = "{% url 'orders:index' %}" class="loginData"> <input type="submit" value="Sign In"/></form>
 
     {% endifnotequal %}
+
 
     <!-- Show status of placed order if it exists -->
     {% ifnotequal orderStatus None %}
@@ -49,6 +40,7 @@
 
 
     {% endifnotequal %}
+    </div>
 
     <!-- Admin order page -->
     {% if msg == "IsSuperUser" %}
